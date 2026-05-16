@@ -21,7 +21,8 @@
 title: IMPACT
 email: contact.impact.id@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  IMPACT (Independent Marine Protected Animals Community) adalah komunitas mahasiswa yang berdiri pada 12 Desember 2012 di lingkungan Program Studi Ilmu Kelautan, Universitas Padjadjaran. Komunitas ini bergerak dalam bidang konservasi biota laut terancam punah, dengan pendekatan yang mencakup tiga pilar utama: Research and Development, Education and Training, dan Awareness and Campaign. Melalui ketiga pilar tersebut, IMPACT berupaya menghasilkan kajian yang dapat dipertanggungjawabkan, meningkatkan kapasitas anggota dan masyarakat, serta mendorong kesadaran publik terhadap isu konservasi laut. It's a blue hope.
+  IMPACT (Independent Marine Protected Animals Community) adalah komunitas mahasiswa yang berdiri pada 12 Desember 2012 di lingkungan Program Studi Ilmu Kelautan, Universitas Padjadjaran. 
+  It's a blue hope.
 baseurl: "/impact-website" # the subpath of your site, e.g. /blog
 url: "https://nicholesamosir.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 

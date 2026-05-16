@@ -1,18 +1,28 @@
 ---
 layout: page
-title: About
+title: Tentang Kami
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+## Tentang IMPACT
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+IMPACT (Independent Marine Protected Animals Community) adalah komunitas mahasiswa yang berdiri pada 12 Desember 2012 di lingkungan Program Studi Ilmu Kelautan, Universitas Padjadjaran.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+Komunitas ini bergerak dalam bidang konservasi biota laut terancam punah, dengan pendekatan yang mencakup tiga pilar utama.
 
+---
 
-[jekyll-organization]: https://github.com/jekyll
+## Tiga Pilar IMPACT
+
+### Research and Development
+Menghasilkan kajian dan data ilmiah yang dapat dipertanggungjawabkan sebagai dasar gerakan konservasi.
+
+### Education and Training
+Membangun kapasitas anggota dan masyarakat melalui program edukasi dan pelatihan yang terstruktur.
+
+### Awareness and Campaign
+Mendorong kesadaran publik terhadap isu konservasi biota laut melalui kampanye yang relevan dan berdampak.
+
+---
+
+*It's a blue hope.*
