@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMPACT — It's a Blue Hope</title>
+<meta name="description" content="Independent Marine Protected Animals Community. Konservasi biota laut terancam punah berbasis di Program Studi Ilmu Kelautan, Universitas Padjadjaran.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ── RESET & BASE ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0d2030;
+    color: #c8dfe9;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+  ::selection { background: #75C5F0; color: #0d2030; }
+
+  /* ── VARIABLES ── */
+  :root {
+    --blue: #75C5F0;
+    --dark: #1a3a4a;
+    --deeper: #0d2030;
+    --surface: #152b3a;
+    --surface2: #1e3d50;
+    --text: #c8dfe9;
+    --muted: #7a9fb5;
+    --border: rgba(117,197,240,0.15);
+    --heading: 'Archivo Black', sans-serif;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.25rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s, backdrop-filter 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(13,32,48,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    text-decoration: none;
+  }
+  .nav-logo img {
+    height: 36px; width: auto;
+    filter: brightness(0) invert(1);
+  }
+  .nav-logo-text {
+    font-family: var(--heading);
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue);
+    color: var(--deeper) !important;
+    padding: 0.45rem 1.2rem;
+    border-radius: 2rem;
+    font-weight: 600 !important;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; color: var(--deeper) !important; }
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 0.25rem;
+  }
+  .nav-hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--blue); border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 8rem 2rem 6rem;
+    max-width: 1200px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--blue);
+    border: 1px solid var(--border);
+    padding: 0.35rem 1rem; border-radius: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .hero-title {
+    font-family: var(--heading);
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero-title span { color: var(--blue); }
+  .hero-tagline {
+    font-family: var(--heading);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    color: var(--muted);
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+    font-style: italic;
+  }
+  .hero-desc {
+    max-width: 560px;
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--blue);
+    color: var(--deeper);
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(117,197,240,0.35);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+  .hero-stat-num {
+    font-family: var(--heading);
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+  }
+
+  /* Hero BG decoration */
+  .hero-bg {
+    position: fixed; inset: 0; z-index: -1; overflow: hidden;
+    pointer-events: none;
+  }
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+  }
+  .orb1 {
+    width: 600px; height: 600px;
+    background: var(--blue);
+    top: -100px; right: -100px;
+    animation: drift 12s ease-in-out infinite alternate;
+  }
+  .orb2 {
+    width: 400px; height: 400px;
+    background: #1e90d4;
+    bottom: 20%; left: -80px;
+    animation: drift 16s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(30px, 40px); }
+  }
+
+  /* ── WAVE DIVIDER ── */
+  .wave-divider { display: block; width: 100%; overflow: hidden; line-height: 0; }
+  .wave-divider svg { display: block; width: 100%; }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--surface);
+    padding: 6rem 2rem;
+  }
+  .about-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.5fr;
+    gap: 5rem; align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-logo-wrap {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-logo-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(117,197,240,0.06), transparent 70%);
+  }
+  .about-logo-wrap img {
+    width: 100%; max-width: 200px;
+    filter: brightness(0) invert(1);
+    position: relative;
+  }
+  .about-badge {
+    position: absolute;
+    top: 1.25rem; right: 1.25rem;
+    background: var(--blue);
+    color: var(--deeper);
+    font-size: 0.7rem; font-weight: 700;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .about-founded {
+    margin-top: 1rem;
+    background: var(--deeper);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .about-founded-label {
+    font-size: 0.75rem; color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .about-founded-date {
+    font-family: var(--heading); color: var(--blue); font-size: 1.1rem;
+  }
+  .section-label {
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--heading);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .section-title span { color: var(--blue); }
+  .about-text {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+  .about-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem;
+  }
+  .about-tag {
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem; padding: 0.35rem 0.9rem;
+    border-radius: 2rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .about-tag:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* ── PILLARS ── */
+  #pillars {
+    background: var(--deeper);
+    padding: 6rem 2rem;
+  }
+  .pillars-inner { max-width: 1200px; margin: 0 auto; }
+  .pillars-header {
+    text-align: center; margin-bottom: 4rem;
+  }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .pillar-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .pillar-card:hover::before { transform: scaleX(1); }
+  .pillar-card:hover {
+    border-color: rgba(117,197,240,0.35);
+    transform: translateY(-4px);
+  }
+  .pillar-number {
+    font-family: var(--heading);
+    font-size: 4rem;
+    color: rgba(117,197,240,0.08);
+    line-height: 1;
+    margin-bottom: -1rem;
+    letter-spacing: -0.02em;
+  }
+  .pillar-abbr {
+    font-family: var(--heading);
+    font-size: 1rem;
+    color: var(--blue);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+  .pillar-name {
+    font-family: var(--heading);
+    font-size: 1.4rem;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+  .pillar-divider {
+    width: 40px; height: 2px;
+    background: var(--border); margin-bottom: 1.25rem;
+    transition: background 0.3s, width 0.3s;
+  }
+  .pillar-card:hover .pillar-divider {
+    background: var(--blue); width: 60px;
+  }
+  .pillar-programs {
+    list-style: none; display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .pillar-programs li {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.9rem; color: var(--muted);
+  }
+  .pillar-programs li::before {
+    content: '';
+    display: block; flex-shrink: 0;
+    width: 6px; height: 6px; border-radius: 50%;
+    border: 1.5px solid var(--blue);
+  }
+  .pillar-programs strong {
+    color: var(--text); font-weight: 500;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--surface);
+    padding: 6rem 2rem;
+  }
+  .contact-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.3fr;
+    gap: 5rem; align-items: start;
+  }
+  .contact-info h2 { margin-bottom: 1rem; }
+  .contact-info p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-channels {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .contact-channel {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-channel:hover {
+    border-color: var(--blue); transform: translateX(4px);
+  }
+  .contact-channel-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(117,197,240,0.1);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-channel-icon svg {
+    width: 18px; height: 18px; fill: var(--blue);
+  }
+  .contact-channel-label {
+    font-size: 0.7rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .contact-channel-value {
+    font-size: 0.9rem; color: var(--text); font-weight: 500;
+  }
+
+  /* Contact Form */
+  .contact-form {
+    background: var(--deeper);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+  }
+  .form-title {
+    font-family: var(--heading); color: #fff;
+    font-size: 1.3rem; margin-bottom: 0.5rem;
+  }
+  .form-subtitle {
+    font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem;
+  }
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label {
+    font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+    width: 100%;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--blue);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    width: 100%;
+    background: var(--blue);
+    color: var(--deeper);
+    border: none;
+    border-radius: 10px;
+    padding: 0.9rem;
+    font-family: var(--heading);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+  .form-submit:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deeper);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .footer-logo img {
+    height: 30px; filter: brightness(0) invert(1); opacity: 0.6;
+  }
+  .footer-logo-text {
+    font-family: var(--heading); color: var(--muted);
+    font-size: 0.95rem; letter-spacing: 0.05em;
+  }
+  .footer-copy {
+    font-size: 0.8rem; color: var(--muted); text-align: center;
+  }
+  .footer-copy a { color: var(--blue); text-decoration: none; }
+  .footer-socials {
+    display: flex; gap: 0.75rem;
+  }
+  .footer-social {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .footer-social:hover { border-color: var(--blue); background: rgba(117,197,240,0.1); }
+  .footer-social svg { width: 16px; height: 16px; fill: var(--muted); transition: fill 0.2s; }
+  .footer-social:hover svg { fill: var(--blue); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .pillars-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .nav-links { display: none; flex-direction: column; }
+    .nav-links.open { display: flex; }
+    .nav-hamburger { display: flex; }
+    nav { flex-wrap: wrap; gap: 1rem; }
+  }
+  @media (max-width: 600px) {
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; }
+    .about-logo-wrap { padding: 2rem; }
+    .contact-form { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BG ORBS -->
+<div class="hero-bg" aria-hidden="true">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <img src="assets/images/logo.png" alt="IMPACT Logo" onerror="this.style.display='none'">
+    <span class="nav-logo-text">IMPACT</span>
+  </a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#pillars">Pilar</a></li>
+    <li><a href="#contact" class="nav-cta">Hubungi Kami</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">Universitas Padjadjaran &nbsp;·&nbsp; Est. 2012</div>
+  <h1 class="hero-title">IM<span>PACT</span></h1>
+  <p class="hero-tagline">It's a blue hope.</p>
+  <p class="hero-desc">
+    Independent Marine Protected Animals Community — komunitas mahasiswa yang bergerak dalam konservasi biota laut terancam punah melalui riset, edukasi, dan kampanye.
+  </p>
+  <div class="hero-actions">
+    <a href="#pillars" class="btn-primary">Lihat Program Kerja</a>
+    <a href="#contact" class="btn-outline">Bergabung Bersama Kami</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">12<span style="color:var(--blue)">+</span></div>
+      <div class="hero-stat-label">Tahun Berdiri</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Pilar Utama</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">7</div>
+      <div class="hero-stat-label">Program Kerja</div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#152b3a"/>
+  </svg>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-logo-wrap">
+        <span class="about-badge">Marine Conservation</span>
+        <img src="assets/images/logo.png" alt="IMPACT" onerror="this.innerHTML='<svg viewBox=\'0 0 120 120\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'60\' cy=\'60\' r=\'55\' fill=\'none\' stroke=\'%2375C5F0\' stroke-width=\'2\'/><text x=\'60\' y=\'68\' text-anchor=\'middle\' font-family=\'Archivo Black\' font-size=\'22\' fill=\'%2375C5F0\'>IMPACT</text></svg>'; this.style.display='none'; this.parentNode.innerHTML += this.getAttribute('onerror').split('innerHTML')[1]">
+      </div>
+      <div class="about-founded">
+        <div>
+          <div class="about-founded-label">Tanggal Berdiri</div>
+          <div class="about-founded-date">12 Desember 2012</div>
+        </div>
+        <div>
+          <div class="about-founded-label">Basis</div>
+          <div class="about-founded-date" style="font-size:0.85rem;color:var(--muted)">Ilmu Kelautan, Unpad</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay: 0.15s">
+      <div class="section-label">Siapa Kami</div>
+      <h2 class="section-title">Komunitas yang lahir dari <span>kepedulian</span> terhadap laut.</h2>
+      <p class="about-text">
+        IMPACT berdiri pada 12 Desember 2012 di lingkungan Program Studi Ilmu Kelautan, Universitas Padjadjaran. Kami adalah komunitas mahasiswa independen yang bergerak dalam bidang konservasi biota laut terancam punah.
+      </p>
+      <p class="about-text">
+        Melalui tiga pilar utama — Research & Development, Education & Training, dan Awareness & Campaign — IMPACT hadir sebagai ruang bagi mahasiswa untuk berkontribusi nyata dalam menjaga keanekaragaman hayati laut Indonesia.
+      </p>
+      <div class="about-tags">
+        <span class="about-tag">🐢 Biota Terancam Punah</span>
+        <span class="about-tag">🔬 Research & Development</span>
+        <span class="about-tag">📚 Education & Training</span>
+        <span class="about-tag">📣 Awareness & Campaign</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE 2 -->
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C360,0 720,60 1080,30 C1260,15 1380,40 1440,30 L1440,0 L0,0 Z" fill="#152b3a"/>
+    <path d="M0,30 C360,0 720,60 1080,30 C1260,15 1380,40 1440,30 L1440,60 L0,60 Z" fill="#0d2030"/>
+  </svg>
+</div>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="pillars-inner">
+    <div class="pillars-header reveal">
+      <div class="section-label">Tiga Pilar Utama</div>
+      <h2 class="section-title">Program Kerja <span>IMPACT</span></h2>
+    </div>
+
+    <div class="pillars-grid">
+      <!-- R&D -->
+      <div class="pillar-card reveal">
+        <div class="pillar-number">01</div>
+        <div class="pillar-abbr">R&D</div>
+        <div class="pillar-name">Research &amp; Development</div>
+        <div class="pillar-divider"></div>
+        <ul class="pillar-programs">
+          <li>
+            <div>
+              <strong>SKOLA</strong><br>
+              Forum kajian ilmiah dan riset konservasi biota laut
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>IMPACT Pillarization</strong><br>
+              Pengembangan kapasitas dan penguatan struktur organisasi
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- E&T -->
+      <div class="pillar-card reveal" style="transition-delay:0.1s">
+        <div class="pillar-number">02</div>
+        <div class="pillar-abbr">E&T</div>
+        <div class="pillar-name">Education &amp; Training</div>
+        <div class="pillar-divider"></div>
+        <ul class="pillar-programs">
+          <li>
+            <div>
+              <strong>Class of Cagen</strong><br>
+              Pelatihan dan pembinaan calon anggota baru
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>IMPACTOR</strong><br>
+              Program pengembangan kompetensi anggota aktif
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>IMPACT Visit</strong><br>
+              Kunjungan lapangan dan observasi ekosistem laut
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- A&C -->
+      <div class="pillar-card reveal" style="transition-delay:0.2s">
+        <div class="pillar-number">03</div>
+        <div class="pillar-abbr">A&C</div>
+        <div class="pillar-name">Awareness &amp; Campaign</div>
+        <div class="pillar-divider"></div>
+        <ul class="pillar-programs">
+          <li>
+            <div>
+              <strong>IMPACTNEWS</strong><br>
+              Media informasi dan konten edukasi digital
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Seminar</strong><br>
+              Forum diskusi dan sharing session publik
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Ber-IMPACT</strong><br>
+              Gerakan kampanye dan aksi nyata di masyarakat
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE 3 -->
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,20 C480,60 960,0 1440,20 L1440,0 L0,0 Z" fill="#0d2030"/>
+    <path d="M0,20 C480,60 960,0 1440,20 L1440,60 L0,60 Z" fill="#152b3a"/>
+  </svg>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="section-label">Hubungi Kami</div>
+      <h2 class="section-title">Mari <span>bergerak</span> bersama.</h2>
+      <p>Ingin tahu lebih lanjut tentang IMPACT, bergabung sebagai anggota, atau berkolaborasi dalam program konservasi? Kami terbuka untuk semua bentuk kerja sama.</p>
+
+      <div class="contact-channels">
+        <a href="mailto:contact.impact.id@gmail.com" class="contact-channel">
+          <div class="contact-channel-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-channel-label">Email</div>
+            <div class="contact-channel-value">contact.impact.id@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://instagram.com/impact.unpad" target="_blank" rel="noopener" class="contact-channel">
+          <div class="contact-channel-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+          <div>
+            <div class="contact-channel-label">Instagram</div>
+            <div class="contact-channel-value">@impact.unpad</div>
+          </div>
+        </a>
+        <a href="https://twitter.com/impactunpad" target="_blank" rel="noopener" class="contact-channel">
+          <div class="contact-channel-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59l-.047-.02z"/></svg>
+          </div>
+          <div>
+            <div class="contact-channel-label">Twitter / X</div>
+            <div class="contact-channel-value">@impactunpad</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="contact-form reveal" style="transition-delay:0.15s">
+      <div class="form-title">Kirim Pesan</div>
+      <p class="form-subtitle">Kami akan membalas dalam 1–2 hari kerja.</p>
+      <form action="https://formspree.io/f/xpqnazre" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Nama</label>
+            <input type="text" id="name" name="name" placeholder="Nama lengkapmu" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="email@kamu.com" required>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:1rem">
+          <label for="subject">Subjek</label>
+          <input type="text" id="subject" name="subject" placeholder="Topik pesanmu">
+        </div>
+        <div class="form-group" style="margin-bottom:1rem">
+          <label for="message">Pesan</label>
+          <textarea id="message" name="message" placeholder="Ceritakan tentang dirimu atau pertanyaanmu…" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Kirim Pesan →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="assets/images/logo.png" alt="IMPACT">
+      <span class="footer-logo-text">IMPACT</span>
+    </div>
+    <div class="footer-copy">
+      © 2024 IMPACT — Independent Marine Protected Animals Community<br>
+      Program Studi Ilmu Kelautan, <a href="https://www.unpad.ac.id" target="_blank">Universitas Padjadjaran</a>
+    </div>
+    <div class="footer-socials">
+      <a href="https://instagram.com/impact.unpad" target="_blank" rel="noopener" class="footer-social" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://twitter.com/impactunpad" target="_blank" rel="noopener" class="footer-social" aria-label="Twitter">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59l-.047-.02z"/></svg>
+      </a>
+      <a href="mailto:contact.impact.id@gmail.com" class="footer-social" aria-label="Email">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* NAV scroll effect */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* Hamburger */
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  /* Scroll reveal */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
