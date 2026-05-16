@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap');
+
+:root {
+  --brand-blue: #75C5F0;
+  --brand-dark: #1a3a4a;
+  --brand-white: #ffffff;
+}
+
+/* NAVBAR */
+.site-header {
+  background-color: var(--brand-blue) !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  padding: 12px 0;
+}
+
+.site-title, .site-title:visited {
+  font-family: 'Archivo Black', sans-serif !important;
+  color: white !important;
+  font-size: 1.8rem !important;
+  letter-spacing: 2px;
+}
+
+.site-nav .page-link {
+  color: white !important;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.site-nav .page-link:hover {
+  color: var(--brand-dark) !important;
+}
+
+h1, h2, h3 {
+  font-family: 'Archivo Black', sans-serif;
+  color: var(--brand-dark);
+}
+
+a {
+  color: var(--brand-blue);
+}
+
+a:hover {
+  color: var(--brand-dark);
+}
+
+/* FOOTER */
+.site-footer {
+  background-color: var(--brand-dark);
+  color: white;
+  border-top: 4px solid var(--brand-blue);
+}
+
+.site-footer a {
+  color: var(--brand-blue) !important;
+}
+
+.footer-heading {
+  font-family: 'Archivo Black', sans-serif;
+  color: var(--brand-blue) !important;
+}
